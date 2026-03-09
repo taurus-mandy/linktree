@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>剛好我是金牛座－文迪♉</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8A6E32;
+    --gold-faint: rgba(201,168,76,0.08);
+    --green: #2D6A4F;
+    --green-light: #52B788;
+    --green-faint: rgba(82,183,136,0.08);
+    --bg: #07090C;
+    --bg2: #0D1018;
+    --bg3: #13181F;
+    --surface: rgba(255,255,255,0.035);
+    --surface-hover: rgba(201,168,76,0.08);
+    --border: rgba(201,168,76,0.15);
+    --border-hover: rgba(201,168,76,0.5);
+    --text: #EDE8DF;
+    --text-dim: #7A7060;
+    --text-mid: #B8B0A0;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .bg-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .bg-orb { position: absolute; border-radius: 50%; filter: blur(100px); }
+  .orb1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%); top: -150px; left: -150px; animation: drift1 14s ease-in-out infinite; }
+  .orb2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(45,106,79,0.07), transparent 70%); bottom: 0; right: -100px; animation: drift2 18s ease-in-out infinite; }
+  .orb3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.04), transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); animation: drift3 20s ease-in-out infinite; }
+  .bg-noise { position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); opacity: 0.4; }
+
+  @keyframes drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,50px)} }
+  @keyframes drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,-40px)} }
+  @keyframes drift3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.2)} }
+
+  .wrapper { position: relative; z-index: 1; max-width: 460px; margin: 0 auto; padding: 52px 22px 80px; }
+
+  /* ── PROFILE ── */
+  .profile { text-align: center; margin-bottom: 24px; animation: fadeUp .8s ease both; }
+
+  .avatar-wrap { display: inline-block; position: relative; margin-bottom: 18px; }
+  .avatar-ring-outer { width: 108px; height: 108px; border-radius: 50%; padding: 2px; background: conic-gradient(var(--gold), var(--gold-dim), var(--gold-light), var(--gold-dim), var(--gold)); animation: spin 8s linear infinite; }
+  .avatar-ring-inner { width: 100%; height: 100%; border-radius: 50%; background: var(--bg); padding: 3px; }
+  .avatar-face { width: 100%; height: 100%; border-radius: 50%; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+  .taurus-badge { position: absolute; bottom: 2px; right: 2px; width: 28px; height: 28px; border-radius: 50%; background: var(--gold); border: 2px solid var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--bg); font-weight: 800; }
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+  /* 名字 — 分兩行 */
+  .name-top {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .name-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px; font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .name-main .taurus-sym { color: var(--gold); font-style: italic; }
+  .name-sub { font-size: 11px; font-weight: 300; letter-spacing: 5px; color: var(--text-dim); text-transform: uppercase; margin-top: 6px; }
+
+  .taurus-trait { display: inline-flex; align-items: center; gap: 8px; margin: 14px auto 0; padding: 7px 18px; border-radius: 30px; border: 1px solid rgba(201,168,76,0.25); background: var(--gold-faint); font-size: 11px; letter-spacing: 1.5px; color: var(--gold); text-transform: uppercase; font-weight: 500; }
+
+  /* ── TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin: 20px 0 10px; animation: fadeUp .8s .12s ease both; }
+  .tag { font-size: 11px; font-weight: 400; letter-spacing: 1px; padding: 5px 13px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-mid); background: var(--surface); transition: all .3s; white-space: nowrap; }
+  .tag:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-faint); }
+  .tag .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); margin-right: 6px; vertical-align: middle; position: relative; top: -1px; }
+
+  /* ── TAGLINE ── */
+  .tagline { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; font-style: italic; color: var(--text-dim); text-align: center; letter-spacing: .5px; line-height: 1.8; margin: 16px 0 32px; padding: 0 12px; animation: fadeUp .8s .2s ease both; }
+  .tagline span { color: var(--gold); font-style: normal; font-weight: 500; }
+
+  /* ── LIFESTYLE ── */
+  .lifestyle { display: flex; gap: 8px; margin-bottom: 36px; animation: fadeUp .8s .25s ease both; }
+  .lc { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 8px; text-align: center; transition: all .3s; cursor: default; }
+  .lc:hover { border-color: var(--gold-dim); background: var(--gold-faint); transform: translateY(-3px); box-shadow: 0 6px 24px rgba(201,168,76,0.1); }
+  .lc-icon { font-size: 22px; margin-bottom: 7px; }
+  .lc-main { font-size: 11px; font-weight: 600; letter-spacing: 1px; color: var(--gold); text-transform: uppercase; line-height: 1.4; }
+  .lc-sub { font-size: 10px; color: var(--text-dim); margin-top: 3px; line-height: 1.4; }
+
+  /* ── SECTION LABEL ── */
+  .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; animation: fadeUp .8s .3s ease both; }
+  .section-label .sl-line { flex: 1; height: 1px; background: var(--border); }
+  .section-label .sl-text { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
+
+  /* ── BUTTONS ── */
+  .links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+  .btn { position: relative; display: flex; align-items: center; gap: 14px; padding: 17px 20px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); color: var(--text); text-decoration: none; transition: all .3s cubic-bezier(.25,.8,.25,1); overflow: hidden; cursor: pointer; }
+  .btn::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.05), transparent); transform: translateX(-100%); transition: transform .6s ease; }
+  .btn:hover::after { transform: translateX(100%); }
+  .btn:hover { border-color: var(--border-hover); background: var(--surface-hover); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.1); }
+  .btn:active { transform: translateY(0); }
+  .btn.gold { border-color: rgba(201,168,76,0.35); background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.03)); }
+  .btn.gold:hover { border-color: var(--gold); box-shadow: 0 8px 36px rgba(201,168,76,0.18); }
+  .bi { width: 42px; height: 42px; border-radius: 11px; background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.18); display: flex; align-items: center; justify-content: center; font-size: 19px; flex-shrink: 0; transition: all .3s; }
+  .btn:hover .bi { background: rgba(201,168,76,0.18); border-color: var(--gold); }
+  .bt { flex: 1; }
+  .bt-main { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .bt-sub { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  .btn.gold .bt-main { color: var(--gold-light); }
+  .ba { color: var(--text-dim); font-size: 13px; transition: all .3s; flex-shrink: 0; }
+  .btn:hover .ba { color: var(--gold); transform: translateX(4px); }
+
+  /* ── CALENDLY EMBED ── */
+  .calendly-wrap {
+    margin-bottom: 36px;
+    animation: fadeUp .8s .38s ease both;
+  }
+  .calendly-box {
+    border-radius: 18px;
+    border: 1px solid rgba(201,168,76,0.3);
+    background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(201,168,76,0.02));
+    overflow: hidden;
+    position: relative;
+  }
+  .calendly-header {
+    padding: 20px 22px 16px;
+    display: flex; align-items: center; gap: 12px;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+  }
+  .cal-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .cal-header-text {}
+  .cal-title { font-size: 15px; font-weight: 600; color: var(--gold-light); line-height: 1.3; }
+  .cal-subtitle { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  .cal-details {
+    padding: 16px 22px;
+    display: flex; gap: 20px; flex-wrap: wrap;
+  }
+  .cal-detail { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-mid); }
+  .cal-detail span { font-size: 14px; }
+
+  /* Inline Calendly iframe */
+  .calendly-inline {
+    width: 100%;
+    min-height: 580px;
+    border: none;
+    display: block;
+    background: transparent;
+  }
+
+  /* Fallback button (shown before iframe loads or as backup) */
+  .calendly-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 0 22px 22px;
+    padding: 16px;
+    border-radius: 12px;
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 14px; font-weight: 700;
+    letter-spacing: .5px;
+    text-decoration: none;
+    transition: all .3s;
+    border: none; cursor: pointer;
+  }
+  .calendly-btn:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(201,168,76,0.3); }
+
+  /* ── PULSE DOT ── */
+  .pulse { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #4ADE80; margin-right: 5px; vertical-align: middle; position: relative; top: -1px; animation: pulseAnim 2s infinite; }
+  @keyframes pulseAnim { 0%{box-shadow:0 0 0 0 rgba(74,222,128,.4)} 70%{box-shadow:0 0 0 7px rgba(74,222,128,0)} 100%{box-shadow:0 0 0 0 rgba(74,222,128,0)} }
+
+  /* ── FINANCE BLOCK ── */
+  .finance-block { border-radius: 18px; border: 1px solid rgba(82,183,136,0.2); background: linear-gradient(135deg, rgba(45,106,79,0.12), rgba(45,106,79,0.04)); padding: 24px 22px; margin-bottom: 28px; position: relative; overflow: hidden; animation: fadeUp .8s .45s ease both; }
+  .finance-block::before { content: '♉'; position: absolute; top: -10px; right: 16px; font-size: 90px; opacity: 0.04; color: var(--gold); line-height: 1; pointer-events: none; }
+  .fb-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .fb-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(82,183,136,0.15); border: 1px solid rgba(82,183,136,0.25); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+  .fb-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 400; color: var(--green-light); letter-spacing: .5px; line-height: 1.2; }
+  .fb-title span { font-style: italic; }
+  .fb-body { font-size: 12px; color: var(--text-mid); line-height: 1.9; margin-bottom: 18px; }
+  .fb-body strong { color: var(--green-light); font-weight: 500; }
+  .finance-pillars { display: flex; gap: 8px; margin-bottom: 18px; }
+  .fp { flex: 1; background: rgba(0,0,0,0.2); border: 1px solid rgba(82,183,136,0.15); border-radius: 12px; padding: 12px 8px; text-align: center; transition: all .3s; cursor: default; }
+  .fp:hover { border-color: rgba(82,183,136,0.4); background: rgba(82,183,136,0.08); transform: translateY(-2px); }
+  .fp-icon { font-size: 18px; margin-bottom: 5px; }
+  .fp-label { font-size: 10px; font-weight: 600; color: var(--green-light); letter-spacing: .5px; line-height: 1.4; }
+  .fp-sub { font-size: 9px; color: var(--text-dim); margin-top: 2px; line-height: 1.4; }
+
+  /* ── RECRUIT BLOCK ── */
+  .recruit-block { border-radius: 18px; border: 1px solid rgba(201,168,76,0.22); background: linear-gradient(135deg, rgba(201,168,76,0.09), rgba(201,168,76,0.02)); padding: 24px 22px; margin-bottom: 28px; position: relative; overflow: hidden; animation: fadeUp .8s .55s ease both; }
+  .recruit-block::before { content: ''; position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%); pointer-events: none; }
+  .rb-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 8px; }
+  .rb-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--gold-light); letter-spacing: .5px; line-height: 1.3; margin-bottom: 12px; }
+  .rb-title em { font-style: italic; }
+  .rb-body { font-size: 12px; color: var(--text-mid); line-height: 1.9; margin-bottom: 18px; }
+  .rb-body strong { color: var(--gold); font-weight: 500; }
+  .life-stats { display: flex; gap: 8px; margin-bottom: 18px; }
+  .ls { flex: 1; background: rgba(0,0,0,0.25); border: 1px solid rgba(201,168,76,0.12); border-radius: 12px; padding: 14px 6px; text-align: center; transition: all .3s; }
+  .ls:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-2px); }
+  .ls-num { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; color: var(--gold); line-height: 1; }
+  .ls-label { font-size: 9px; color: var(--text-dim); margin-top: 4px; letter-spacing: .5px; line-height: 1.4; }
+  .lifestyle-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+  .ll-item { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: var(--text-mid); line-height: 1.6; }
+  .ll-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 6px; }
+
+  /* ── QUOTE ── */
+  .quote-block { text-align: center; padding: 28px 16px; border-top: 1px solid var(--border); margin-top: 8px; animation: fadeUp .8s .65s ease both; }
+  .quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 48px; line-height: .5; color: rgba(201,168,76,0.2); display: block; margin-bottom: 12px; }
+  .quote-text { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; font-weight: 300; color: var(--text-mid); line-height: 1.8; letter-spacing: .3px; }
+  .quote-text span { color: var(--gold); font-style: normal; }
+  .quote-credit { font-size: 10px; letter-spacing: 2px; color: var(--text-dim); margin-top: 12px; text-transform: uppercase; }
+
+  .footer { text-align: center; margin-top: 36px; animation: fadeUp .8s .7s ease both; }
+  .footer-copy { font-size: 10px; color: rgba(122,112,96,.35); letter-spacing: 2px; text-transform: uppercase; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+  .links .btn:nth-child(1) { animation: fadeUp .6s .35s ease both; }
+  .links .btn:nth-child(2) { animation: fadeUp .6s .42s ease both; }
+  .links .btn:nth-child(3) { animation: fadeUp .6s .48s ease both; }
+</style>
+<!-- Calendly Widget Script -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</head>
+<body>
+
+<div class="bg-wrap">
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+  <div class="bg-noise"></div>
+</div>
+
+<div class="wrapper">
+
+  <!-- PROFILE -->
+  <div class="profile">
+    <div class="avatar-wrap">
+      <div class="avatar-ring-outer">
+        <div class="avatar-ring-inner">
+          <div class="avatar-face">👤</div>
+        </div>
+      </div>
+      <div class="taurus-badge">♉</div>
+    </div>
+    <div class="name-top">剛好我是金牛座</div>
+    <div class="name-main">文迪<span class="taurus-sym">♉</span></div>
+    <div class="name-sub">Finance · Freedom · Mindset</div>
+    <div class="taurus-trait">♉ 務實理財 · 天生規劃師</div>
+  </div>
+
+  <!-- IDENTITY TAGS -->
+  <div class="tags">
+    <div class="tag"><span class="dot"></span>保險理財顧問</div>
+    <div class="tag"><span class="dot"></span>催眠治療師</div>
+    <div class="tag"><span class="dot"></span>旅行社腦細</div>
+    <div class="tag"><span class="dot"></span>🐱 貓奴</div>
+  </div>
+
+  <!-- TAGLINE -->
+  <div class="tagline">
+    財務自由唔係夢。<br>
+    係你<span>計劃好</span>之後，<span>必然發生</span>的事。
+  </div>
+
+  <!-- LIFESTYLE TRIO -->
+  <div class="lifestyle">
+    <div class="lc"><div class="lc-icon">✈️</div><div class="lc-main">想去就去</div><div class="lc-sub">時間自由</div></div>
+    <div class="lc"><div class="lc-icon">💰</div><div class="lc-main">收入無上限</div><div class="lc-sub">財務自由</div></div>
+    <div class="lc"><div class="lc-icon">🧠</div><div class="lc-main">身心自在</div><div class="lc-sub">心靈自由</div></div>
+  </div>
+
+  <!-- LINKS -->
+  <div class="section-label">
+    <div class="sl-line"></div>
+    <div class="sl-text">聯絡我</div>
+    <div class="sl-line"></div>
+  </div>
+
+  <div class="links">
+    <a href="https://instagram.com/taurus.mandykimtom" class="btn">
+      <div class="bi">📱</div>
+      <div class="bt">
+        <div class="bt-main">追蹤 Instagram @taurus.mandykimtom</div>
+        <div class="bt-sub">每週理財智慧 · 生活旅遊日常</div>
+      </div>
+      <div class="ba">→</div>
+    </a>
+    <a href="https://wa.me/你的WhatsApp號碼" class="btn">
+      <div class="bi">💬</div>
+      <div class="bt">
+        <div class="bt-main">WhatsApp 直接聯絡</div>
+        <div class="bt-sub">有問題？即時問我</div>
+      </div>
+      <div class="ba">→</div>
+    </a>
+  </div>
+
+  <!-- TIER 1: 免費網上諮詢 → DM only, no booking needed -->
+  <div class="section-label">
+    <div class="sl-line"></div>
+    <div class="sl-text">免費網上諮詢</div>
+    <div class="sl-line"></div>
+  </div>
+
+  <div class="calendly-wrap">
+    <div class="calendly-box">
+      <div class="calendly-header">
+        <div class="cal-icon">💬</div>
+        <div class="cal-header-text">
+          <div class="cal-title">免費網上初步財務諮詢</div>
+          <div class="cal-subtitle"><span class="pulse"></span>完全免費 · 無需預約 · DM 即可開始</div>
+        </div>
+      </div>
+      <div class="cal-details">
+        <div class="cal-detail"><span>🆓</span> 完全免費</div>
+        <div class="cal-detail"><span>💻</span> 網上進行</div>
+        
+        <div class="cal-detail"><span>🚫</span> 無硬銷</div>
+      </div>
+      <div style="padding: 4px 22px 6px;">
+        <div style="font-size:12px; color: var(--gold); text-align:center; padding: 10px 0; letter-spacing:0.3px;">
+          💌 &nbsp; 歡迎 DM 初步諮詢
+        </div>
+      </div>
+      <div style="padding: 0 22px 22px; display:flex; flex-direction:column; gap:10px;">
+        <a href="https://instagram.com/taurus.mandykimtom" target="_blank" class="calendly-btn">
+          📩 &nbsp; IG DM 我
+        </a>
+        <a href="https://wa.me/你的WhatsApp號碼" target="_blank" class="calendly-btn" style="background: #1a8a4a; color: #fff;">
+          💬 &nbsp; WhatsApp 聯絡我
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIER 2: 網上預約見面諮詢 → Calendly booking -->
+  <div class="section-label">
+    <div class="sl-line"></div>
+    <div class="sl-text">網上預約見面諮詢</div>
+    <div class="sl-line"></div>
+  </div>
+
+  <div class="calendly-wrap">
+    <div class="calendly-box">
+      <div class="calendly-header">
+        <div class="cal-icon">🤝</div>
+        <div class="cal-header-text">
+          <div class="cal-title">預約見面深入財務規劃</div>
+          <div class="cal-subtitle"><span class="pulse"></span>面對面 · 自選時間 · 完全免費</div>
+        </div>
+      </div>
+      <div class="cal-details">
+        <div class="cal-detail"><span>🤝</span> 面對面</div>
+        <div class="cal-detail"><span>📆</span> 自選時間</div>
+        <div class="cal-detail"><span>📍</span> 就近地點</div>
+        <div class="cal-detail"><span>🆓</span> 完全免費</div>
+      </div>
+      <div style="padding: 0 22px 22px;">
+        <a href="#"
+           onclick="Calendly.initPopupWidget({url: 'https://calendly.com/YOUR_CALENDLY_URL'}); return false;"
+           class="calendly-btn">
+          📅 &nbsp; 立即預約見面時間
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINANCE REMINDER BLOCK -->
+  <div class="finance-block">
+    <div class="fb-header">
+      <div class="fb-icon">📊</div>
+      <div class="fb-title">你的財務健康<span>，檢查一下？</span></div>
+    </div>
+    <div class="fb-body">
+      好多人以為<strong>買咗保險就係做好財務規劃</strong>，其實唔係。<br>
+      一個完整的計劃，需要同時兼顧三個層面：
+    </div>
+    <div class="finance-pillars">
+      <div class="fp"><div class="fp-icon">🏦</div><div class="fp-label">儲蓄規劃</div><div class="fp-sub">緊急備用金<br>長線增值</div></div>
+      <div class="fp"><div class="fp-icon">🛡️</div><div class="fp-label">個人保障</div><div class="fp-sub">危疾 · 醫療<br>意外保障</div></div>
+      <div class="fp"><div class="fp-icon">👨‍👩‍👧</div><div class="fp-label">家庭保障</div><div class="fp-sub">人壽 · 教育<br>退休規劃</div></div>
+    </div>
+    <div class="fb-body" style="margin-bottom:0;">
+      唔確定自己係咪做齊三樣？<strong>免費30分鐘網上傾清楚，無壓力，無硬銷。</strong>
+    </div>
+  </div>
+
+  <!-- RECRUITMENT BLOCK -->
+  <div class="recruit-block">
+    <div class="rb-eyebrow">✦ For The Ambitious · 視野改變你嘅生活</div>
+    <div class="rb-title">有沒有想過，<em>生活可以不一樣？</em></div>
+    <div class="rb-body">
+      我唔係要說服你任何事。<br><br>
+      只係想分享——原來<strong>時間可以係自己的</strong>，
+      <strong>收入可以唔封頂</strong>，仲可以真心幫到人。
+      如果你都有同樣嘅想法，或者我們可以傾傾。
+    </div>
+    <div class="life-stats">
+      <div class="ls"><div class="ls-num">∞</div><div class="ls-label">收入<br>無上限</div></div>
+      <div class="ls"><div class="ls-num">24/7</div><div class="ls-label">時間<br>自主</div></div>
+      <div class="ls"><div class="ls-num">3</div><div class="ls-label">收入<br>來源</div></div>
+      <div class="ls"><div class="ls-num">🐱</div><div class="ls-label">親子<br>時間</div></div>
+    </div>
+    <a href="https://instagram.com/taurus.mandykimtom" target="_blank" class="btn gold">
+      <div class="bi">✦</div>
+      <div class="bt">
+        <div class="bt-main">有興趣了解更多？DM 我</div>
+      </div>
+      <div class="ba">→</div>
+    </a>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-block">
+    <span class="quote-mark">"</span>
+    <div class="quote-text">
+      金牛座嘅務實，唔係唔敢夢想。<br>
+      係知道<span>每一步都要計劃好</span>，<br>
+      先可以走到想去的地方。
+    </div>
+    <div class="quote-credit">— 剛好我是金牛座 · 文迪♉</div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-copy">© 剛好我是金牛座 · 文迪♉ · All Rights Reserved</div>
+  </div>
+
+</div>
+</body>
+</html>

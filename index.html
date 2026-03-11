@@ -238,6 +238,32 @@
 </head>
 <body>
 
+<audio id="bgMusic" loop>
+  <source src="sleepvolume-bossa-nova-morning-cafe-233025.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Music toggle button -->
+<button onclick="toggleMusic()" id="musicBtn" style="position:fixed;bottom:24px;right:24px;z-index:999;width:44px;height:44px;border-radius:50%;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.4);color:#C9A84C;font-size:18px;cursor:pointer;backdrop-filter:blur(10px);transition:all 0.3s;">🎵</button>
+
+<script>
+var music = document.getElementById("bgMusic");
+var btn = document.getElementById("musicBtn");
+var playing = false;
+function toggleMusic() {
+  if (playing) {
+    music.pause();
+    btn.innerHTML = "🎵";
+    btn.style.opacity = "0.5";
+    playing = false;
+  } else {
+    music.play();
+    btn.innerHTML = "🔊";
+    btn.style.opacity = "1";
+    playing = true;
+  }
+}
+</script>
+
 <div class="bg-wrap">
   <div class="bg-orb orb1"></div>
   <div class="bg-orb orb2"></div>
@@ -292,22 +318,34 @@
   </div>
 
   <div class="links">
-    <a href="https://instagram.com/taurus.mandykimtom" class="btn">
+    <a href="https://instagram.com/taurus.mandy.slash" class="btn">
       <div class="bi">📱</div>
       <div class="bt">
-        <div class="bt-main">追蹤 Instagram @taurus.mandykimtom</div>
+        <div class="bt-main">追蹤 Instagram @taurus.mandy.slash</div>
         <div class="bt-sub">每週理財智慧 · 生活旅遊日常</div>
       </div>
       <div class="ba">→</div>
     </a>
-    <a href="https://wa.me/你的WhatsApp號碼" class="btn">
-      <div class="bi">💬</div>
-      <div class="bt">
-        <div class="bt-main">WhatsApp 直接聯絡</div>
-        <div class="bt-sub">有問題？即時問我</div>
-      </div>
-      <div class="ba">→</div>
-    </a>
+  </div>
+
+  <!-- FINANCE REMINDER BLOCK -->
+  <div class="finance-block">
+    <div class="fb-header">
+      <div class="fb-icon">📊</div>
+      <div class="fb-title">你的財務健康<span>，檢查一下？</span></div>
+    </div>
+    <div class="fb-body">
+      好多人以為<strong>買咗保險就係做好財務規劃</strong>，其實唔係。<br>
+      一個完整的計劃，需要同時兼顧三個層面：
+    </div>
+    <div class="finance-pillars">
+      <div class="fp"><div class="fp-icon">🏦</div><div class="fp-label">儲蓄規劃</div><div class="fp-sub">緊急備用金<br>長線增值</div></div>
+      <div class="fp"><div class="fp-icon">🛡️</div><div class="fp-label">個人保障</div><div class="fp-sub">危疾 · 醫療<br>意外保障</div></div>
+      <div class="fp"><div class="fp-icon">👨‍👩‍👧</div><div class="fp-label">家庭保障</div><div class="fp-sub">人壽 · 教育<br>退休規劃</div></div>
+    </div>
+    <div class="fb-body" style="margin-bottom:0;">
+      唔確定自己係咪做齊三樣？<strong>免費30分鐘網上傾清楚，無壓力，無硬銷。</strong>
+    </div>
   </div>
 
   <!-- TIER 1: 免費網上諮詢 → DM only, no booking needed -->
@@ -329,7 +367,6 @@
       <div class="cal-details">
         <div class="cal-detail"><span>🆓</span> 完全免費</div>
         <div class="cal-detail"><span>💻</span> 網上進行</div>
-        
         <div class="cal-detail"><span>🚫</span> 無硬銷</div>
       </div>
       <div style="padding: 4px 22px 6px;">
@@ -337,12 +374,9 @@
           💌 &nbsp; 歡迎 DM 初步諮詢
         </div>
       </div>
-      <div style="padding: 0 22px 22px; display:flex; flex-direction:column; gap:10px;">
-        <a href="https://instagram.com/taurus.mandykimtom" target="_blank" class="calendly-btn">
+      <div style="padding: 0 22px 22px;">
+        <a href="https://instagram.com/taurus.mandy.slash" target="_blank" class="calendly-btn">
           📩 &nbsp; IG DM 我
-        </a>
-        <a href="https://wa.me/你的WhatsApp號碼" target="_blank" class="calendly-btn" style="background: #1a8a4a; color: #fff;">
-          💬 &nbsp; WhatsApp 聯絡我
         </a>
       </div>
     </div>
@@ -380,26 +414,6 @@
     </div>
   </div>
 
-  <!-- FINANCE REMINDER BLOCK -->
-  <div class="finance-block">
-    <div class="fb-header">
-      <div class="fb-icon">📊</div>
-      <div class="fb-title">你的財務健康<span>，檢查一下？</span></div>
-    </div>
-    <div class="fb-body">
-      好多人以為<strong>買咗保險就係做好財務規劃</strong>，其實唔係。<br>
-      一個完整的計劃，需要同時兼顧三個層面：
-    </div>
-    <div class="finance-pillars">
-      <div class="fp"><div class="fp-icon">🏦</div><div class="fp-label">儲蓄規劃</div><div class="fp-sub">緊急備用金<br>長線增值</div></div>
-      <div class="fp"><div class="fp-icon">🛡️</div><div class="fp-label">個人保障</div><div class="fp-sub">危疾 · 醫療<br>意外保障</div></div>
-      <div class="fp"><div class="fp-icon">👨‍👩‍👧</div><div class="fp-label">家庭保障</div><div class="fp-sub">人壽 · 教育<br>退休規劃</div></div>
-    </div>
-    <div class="fb-body" style="margin-bottom:0;">
-      唔確定自己係咪做齊三樣？<strong>免費30分鐘網上傾清楚，無壓力，無硬銷。</strong>
-    </div>
-  </div>
-
   <!-- RECRUITMENT BLOCK -->
   <div class="recruit-block">
     <div class="rb-eyebrow">✦ For The Ambitious · 視野改變你嘅生活</div>
@@ -416,7 +430,7 @@
       <div class="ls"><div class="ls-num">3</div><div class="ls-label">收入<br>來源</div></div>
       <div class="ls"><div class="ls-num">🐱</div><div class="ls-label">親子<br>時間</div></div>
     </div>
-    <a href="https://instagram.com/taurus.mandykimtom" target="_blank" class="btn gold">
+    <a href="https://instagram.com/taurus.mandy.slash" target="_blank" class="btn gold">
       <div class="bi">✦</div>
       <div class="bt">
         <div class="bt-main">有興趣了解更多？DM 我</div>
